@@ -62,12 +62,12 @@ p {
 				<br>
 				<div class="container-fluid">
 				<label>Select License Type</label>
-				 <select class="form-control" aria-label="Default select example" required>
-				  <option name="l-type" selected>Open this select menu</option>
-				  <option name="l-type" value="GST">GST</option>
-				  <option name="l-type" value="FSSAI">FSSAI</option>
-				  <option name="l-type" value="SHOP AND ESTABLISHMENT">SHOP AND ESTABLISHMENT</option>
-				  <option name="l-type" value="PAN CARD">PAN CARD</option>
+				 <select class="form-control"  name="l-type" aria-label="Default select example" required>
+				  <option selected>Open this select menu</option>
+				  <option value="GST">GST</option>
+				  <option value="FSSAI">FSSAI</option>
+				  <option value="SHOP AND ESTABLISHMENT">SHOP AND ESTABLISHMENT</option>
+				  <option value="PAN CARD">PAN CARD</option>
 				</select> 
 				</div>
 				

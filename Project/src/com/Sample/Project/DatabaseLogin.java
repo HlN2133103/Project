@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +19,8 @@ import Model.User;
 
 public class DatabaseLogin extends HttpServlet
 { 
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
@@ -32,7 +33,7 @@ public class DatabaseLogin extends HttpServlet
 		{
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","root");
-			PreparedStatement statement = connect.prepareStatement("select * from user where Username=? and Password=?");
+			PreparedStatement statement = connect.prepareStatement("select * from User where Username=? and Password=?");
 			statement.setString(1, u.getUsername());
 			statement.setString(2, u.getPassword());
 			ResultSet result =statement.executeQuery();
@@ -45,6 +46,7 @@ public class DatabaseLogin extends HttpServlet
 				session.setAttribute("u", u);
 								
 				out.println("<script>alert('Welcome "+u.getUsername()+"');</script>");
+				System.out.println("Welcome "+u.getUsername());
 				resp.sendRedirect("index.jsp");
 				
 			}
@@ -53,7 +55,6 @@ public class DatabaseLogin extends HttpServlet
 						out.println("<script>alert('Invlaid login Credentials');</script>");
 						resp.sendRedirect("Login.jsp");
 			}
-			
 		} 
 		 catch (Exception e) 
 		{

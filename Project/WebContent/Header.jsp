@@ -66,6 +66,7 @@
                         </a>
                         <div class="dropdown-menu">
                           <a class="dropdown-item" href="#" style="font-size:20px;">Profile</a>
+                          <a class="dropdown-item" href="Order.jsp" style="font-size:20px;">My Orders</a>
                            <a class="dropdown-item" href="Logout.jsp" style="font-size:20px;">
                             Log-Out</a>
                         </div>
