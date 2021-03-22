@@ -21,7 +21,8 @@ public class AddProducts extends HttpServlet {
       
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		String query = "insert into products(Productname,Brand,MRP_Price,C_Price,S_Price,F_Image,B_Image,Quantity,Weight,Status,Margin) values(?,?,?,?,?,?,?,?,?,?,?)";
+		
+		String query = "insert into products(Productname,Brand,MRP_Price,C_Price,S_Price,F_Image,B_Image,Quantity,Weight,Status,Margin,Particulars) values(?,?,?,?,?,?,?,?,?,?,?,?)";
 		String pname = request.getParameter("pname");
 		String brand = request.getParameter("brand");
 		String mrp = request.getParameter("mrp_price");
@@ -32,6 +33,8 @@ public class AddProducts extends HttpServlet {
 	    int m1 = Integer.parseInt(mrp)-Integer.parseInt(sp);
 	    int m2 = m1*100;
 	    int margin = m2/Integer.parseInt(mrp);
+	    
+	    String particulars = "";
 		
 		
 		Part part=request.getPart("f_image");

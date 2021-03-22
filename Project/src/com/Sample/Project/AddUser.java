@@ -55,7 +55,7 @@ public class AddUser extends HttpServlet {
 			statement.setBinaryStream(9, is1);
 			statement.executeUpdate();
 			
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("Login.jsp");
 		}
 		catch(Exception e)
 		{

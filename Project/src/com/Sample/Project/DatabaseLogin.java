@@ -33,7 +33,7 @@ public class DatabaseLogin extends HttpServlet
 		{
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","root");
-			PreparedStatement statement = connect.prepareStatement("select * from User where Username=? and Password=?");
+			PreparedStatement statement = connect.prepareStatement("select * from user where Username=? and Password=?");
 			statement.setString(1, u.getUsername());
 			statement.setString(2, u.getPassword());
 			ResultSet result =statement.executeQuery();
@@ -43,17 +43,16 @@ public class DatabaseLogin extends HttpServlet
 				u.setUsername(result.getString("Username"));
 				u.setEmail(result.getString("Email"));
 				u.setCompany(result.getString("Company_name"));
+				u.setPhone(result.getString("Phone_no"));
 				session.setAttribute("u", u);
 								
 				out.println("<script>alert('Welcome "+u.getUsername()+"');</script>");
-				System.out.println("Welcome "+u.getUsername());
 				resp.sendRedirect("index.jsp");
-				
 			}
 			else
 			{
-						out.println("<script>alert('Invlaid login Credentials');</script>");
-						resp.sendRedirect("Login.jsp");
+				out.println("<script>alert('Invlaid login Credentials');</script>");
+				resp.sendRedirect("Login.jsp");
 			}
 		} 
 		 catch (Exception e) 

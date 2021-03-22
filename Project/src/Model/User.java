@@ -6,6 +6,7 @@ public class User
 	private String email;
 	private String password;
 	private String status;
+	private String phone;
 	private String company_name;
 	
 	public String getCompany() 
@@ -16,14 +17,17 @@ public class User
 	{
 		this.company_name = company_name;
 	}
+	
 	public String getUsername() 
 	{
 		return username;
 	}
+	
 	public void setUsername(String username) 
 	{
 		this.username = username;
 	}
+	
 	public String getEmail()
 	{
 		return email;
@@ -32,6 +36,7 @@ public class User
 	{
 		this.email = email;
 	}
+	
 	public String getPassword() 
 	{
 		return password;
@@ -40,12 +45,23 @@ public class User
 	{
 		this.password = password;
 	}
+	
 	public String getStatus() 
 	{
 		return status;
 	}
-	public void setStatus(String Status)
+	public void setStatus(String status)
 	{
-		this.status = Status;
+		this.status = status;
 	}
+	
+	public String getPhone() 
+	{
+		return phone;
+	}
+	public void setPhone(String phone) 
+	{
+		this.phone = phone;
+	}
+
 }

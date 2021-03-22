@@ -1,0 +1,61 @@
+create database project;
+
+use project; 
+
+create table User(
+    Username varchar(30),
+    Password varchar(20),
+    Phone_no varchar(10),
+    Email varchar(30),
+    Company_name varchar(30),
+    L_image longBlob,
+    L_type varchar(10),
+    Address varchar(150),
+    Shop_image longBlob);
+
+
+select Username, Password,Phone_no, Email,Company_name, L_type, Address from User;
+
+create table Products(Id int Primary key auto_increment,
+		  Productname varchar(100),
+		  Brand varchar(30),
+		  MRP_Price varchar(5),
+		  C_Price varchar(5),
+		  S_Price varchar(5),
+		  F_Image longBlob,
+		  B_Image longBlob,
+		  Quantity int,
+		  Weight varchar(6),
+		  Status varchar(20));
+
+create table cartitems(
+	Id int Primary key auto_increment,
+	ProductId int,
+	Productname varchar(40),
+	Quantity int,
+	Username varchar(20));
+  
+select Productname,Brand,MRP_Price,C_Price,S_Price,Quantity,Weight,Status,Margin from products;
+
+create table Ordertable(
+		Id int Primary Key auto_increment,
+		Orderdate Date,
+		Ordertime 
+		User varchar(30), 
+		ProductId int,
+		Productname varchar(40),
+		Description varchar(50),
+		Quantity int,
+		NetAmount varchar(10),
+		TaxRate varchar(5),
+		Taxtype varchar(10),
+		TaxAmount varchar(10),
+		Totalamount varchar(10),
+		Paymentmethod varchar(30),
+		SoldBy varchar(30),
+		ShippingAddress varchar(100),
+		Placeofdelivery(30),
+);
+
+
+

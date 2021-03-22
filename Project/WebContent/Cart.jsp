@@ -55,7 +55,7 @@
 <tr>  
 <c:forEach items="${rs2.rows}" var="row">  
     <td> 
-        <a href="product-details.jsp?Id=${row.Id}"> <img src="ImageServlet?id=${row.Id}" alt="" style="height:230px; width:360px;" class="img-responsive">
+        <a href="product-details.jsp?Id=${row.Id}"> <img src="ImageServlet?id=${row.Id}" alt="" style="height:230px; width:360px;" class="img-responsive"></a>
     </td> 
 </c:forEach>
 <c:forEach items="${rs.rows}" var="row">
@@ -65,15 +65,17 @@
 <td align="center"><c:out value="${row.Quantity*row.Price}"></c:out></td>
 </c:forEach>
 <td> 
-    <!--<form action="pay.php" method="POST">
+<c:forEach items="${rs.rows}" var="row">
+    <form action="PlaceOrder.jsp" method="post">
                   <div class="col-lg-12">
                   <div class="form-group">
-                      <input type="text" value="<?php echo $Phonename;?> " hidden name="pname">
-                      <input type="text" value="<?php echo $Brand;?> " hidden name="brand">
-                      <input type="text" value="<?php echo $Total;?> " hidden name="Price">
-                      <input type="text" value="<?php echo str_replace("+"," ",$Name); ?> " hidden name="name">
-                      <input type="text" value="<?php echo $Phone; ?> " hidden name="phone">
-                      <input type="text" value="<?php echo $Email; ?> " hidden name="email">
+                     
+                     <c:set var="pname" scope="session" value="${row.Brand} ${row.Productname}"></c:set>
+                     <c:set var="name" scope="session" value="${u.username}"> </c:set>
+                     <c:set var="phone" scope="session" value="${u.phone}"> </c:set>
+                     <c:set var="email" scope="session" value="${u.email}"></c:set>
+                     <c:set var="price" scope="session" value="${row.Quantity*row.Price}"></c:set>
+                     <c:set var="qty" scope="session" value="${row.Quantity}"></c:set>
 
                      <button type="submit" class="btn btn-round btn-block" style="background:#a4c639;color: #fff;
                       font-size: 13px;
@@ -84,10 +86,9 @@
                       display: inline-block;
                       transition: all 0.3s;">
                       Buy Now</button>
-
-
                 </div></div>
-        </form> -->
+        </form>
+        </c:forEach>
         <c:forEach items="${rs.rows}" var="row1"> 
         <form action="RemoveFromCart" method="POST">
                   <div class="col-lg-12">
@@ -102,7 +103,6 @@
                       display: inline-block;
                       transition: all 0.3s;" align="center">
                       Remove</button>
-
                 </div></div>
         </form> 
         </c:forEach>  
@@ -110,6 +110,22 @@
 </tr>
 </c:forEach>
 </tbody>
+</table>
+
+<table border="1" class="tbl-cart" cellpadding="30" cellspacing="10">
+<center>
+	<tr>
+		<th>Total</th>
+		<th>SGST :  </th>
+		<th>CGST :  </th>
+		<th>Sub Total</th>
+	</tr>
+	<tr>
+		<td></td>
+		<td>6%</td>
+		<td>6%</td>
+	</tr>
+</center>
 </table>
 </div>
 </body>
