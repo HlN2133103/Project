@@ -22,7 +22,7 @@ public class AddProducts extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		
-		String query = "insert into products(Productname,Brand,MRP_Price,C_Price,S_Price,F_Image,B_Image,Quantity,Weight,Status,Margin,Particulars) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+		String query = "insert into products(Productname,Brand,MRP_Price,C_Price,S_Price,F_Image,B_Image,Quantity,Weight,Status,Margin) values(?,?,?,?,?,?,?,?,?,?,?)";
 		String pname = request.getParameter("pname");
 		String brand = request.getParameter("brand");
 		String mrp = request.getParameter("mrp_price");

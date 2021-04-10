@@ -79,8 +79,7 @@ p {
 				</div>
 				
 				<div class="container-fluid">
-					<label>Enter Address:</label>
-					 <input type="text" name="address" class="form-control input-lg" placeholder="Enter Address" required>
+					 	
 				</div>
 				
 				<div class="container-fluid">

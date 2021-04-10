@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,16 +18,18 @@ import Model.User;
 @WebServlet(name="AddToCart",urlPatterns = "/AddToCart")
 public class AddToCart extends HttpServlet 
 {
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
 		HttpSession hs  = req.getSession();
 		
 		int productid   = Integer.parseInt(req.getParameter("Id"));
-		int quantity    = Integer.parseInt(req.getParameter("quantity"));
 		String username = ((User)hs.getAttribute("u")).getUsername();
-		int price = Integer.parseInt(req.getParameter("Price"));
-		String productname = req.getParameter("pname");
+		int quantity = Integer.parseInt(req.getParameter("quantity"));
+		String pname = req.getParameter("pname");
+		int Price = Integer.parseInt(req.getParameter("Price"));
 		
 		try
 		{
@@ -50,13 +51,13 @@ public class AddToCart extends HttpServlet
 						+ "</script>");
 			}
 			else
-			{
+			{			
 				PreparedStatement ps2 = con.prepareStatement("insert into cartitems (ProductId,Productname,Quantity,Username,Price) values(?,?,?,?,?)");
 				ps2.setInt(1, productid);
-				ps2.setString(2,productname);
-				ps2.setInt(3, quantity);
+				ps2.setString(2,pname);
+				ps2.setInt(3,quantity);
 				ps2.setString(4, username);
-				ps2.setInt(5, price);
+				ps2.setInt(5, Price);
 				ps2.executeUpdate();
 			
 				PrintWriter out=resp.getWriter();

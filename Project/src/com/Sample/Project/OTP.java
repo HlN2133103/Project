@@ -35,18 +35,19 @@ public class OTP extends HttpServlet
 			if(result.next())
 			{
 				Random r=new Random();
-				int randomnumber=r.nextInt(8999)+1000; 
+				int randomnumber=r.nextInt(99999)+1000; 
 				
 				HttpSession hs=req.getSession();
 				hs.setAttribute("randomnumber", randomnumber);
 				hs.setAttribute("email", email);
 				
-				Email em=new Email(email,""
-						+ "ResetPassword" ,"Hi ,"+result.getString("Company_name")
-								+ "\r\n  To reset your password, "
-								+ "Please Enter The Given OTP Below. "
-								+ "Your changes  will update the password for Website and Any services use by your ID.	 \r\n"
-								+ "Otp is: "+randomnumber);
+				Email em=new Email(email,"Password Recovery - One Stop Supply",
+						 "Dear user,\n"
+						+"Here is your One Time Password(OTP) to reset your password.\n\n"
+						+"Otp is: "+randomnumber
+						+"\n\nDo not share your OTP with anyone.\n"
+						+"\nThis is an auto-generated email.  Do not reply to this email."
+						);
 				em.sendEmail();
 				
 				out.println(""

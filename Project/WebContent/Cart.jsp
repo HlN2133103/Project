@@ -1,29 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-
-<!-- Bootstrap core CSS -->
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Additional CSS Files -->
-<link rel="stylesheet" href="assets/css/fontawesome.css">
-<link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="assets/css/owl.css">
-</head>
+	pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <body>
-
 <%
-	session.getAttribute("u");
+session.getAttribute("u");
 %>
-<jsp:include page="Header.jsp"></jsp:include>
-<br><br>
+	<jsp:include page="inc/head.jsp"></jsp:include>
+	<jsp:include page="inc/header.jsp"></jsp:include>
+	
 <sql:setDataSource driver="com.mysql.jdbc.Driver"
 					   url="jdbc:mysql://localhost:3306/project"
 					   user="root"
@@ -31,102 +16,124 @@
 					   var="con"/>
 					 
 	<sql:query var="rs" dataSource="${con}">
-		select * from cartitems where username=?
+		select * from cartitems where Username=?
 		<sql:param>${u.username}</sql:param>
 	</sql:query>
 	
-<div id="shopping-cart">
-<table class="tbl-cart" cellpadding="80" cellspacing="3">
-<tbody>
-<tr>
-<th style="text-align:left;">Product Image</th>    
-<th style="text-align:left;">Product Name</th>
-<th style="text-align:left;">Product Quantity</th>
-<th style="text-align:left;">Product Price</th>
-<th style="text-align:left;">Total Price</th>
-</tr>
+	<div class="breadcrumb-area mb-50">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="breadcrumb-container">
+						<ul>
+							<li><a href="index.jsp"><i class="fa fa-home"></i> Home</a></li>
+							<li class="active">Cart</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="page-section section mb-50">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
 
-	<c:forEach items="${rs.rows}" var="cartdetails">
-	
-	<sql:query var="rs2" dataSource="${con}">
-		select * from products where Id=?
-		<sql:param>${cartdetails.ProductId}</sql:param>
-	</sql:query>
-<tr>  
-<c:forEach items="${rs2.rows}" var="row">  
-    <td> 
-        <a href="product-details.jsp?Id=${row.Id}"> <img src="ImageServlet?id=${row.Id}" alt="" style="height:230px; width:360px;" class="img-responsive"></a>
-    </td> 
-</c:forEach>
-<c:forEach items="${rs.rows}" var="row">
-<td align="center"><c:out value="${row.Brand} ${row.Productname}"></c:out></td>
-<td align="center"><c:out value="${row.Quantity}"></c:out> </td>
-<td align="center"><c:out value="${row.Price}"></c:out></td>
-<td align="center"><c:out value="${row.Quantity*row.Price}"></c:out></td>
-</c:forEach>
-<td> 
-<c:forEach items="${rs.rows}" var="row">
-    <form action="PlaceOrder.jsp" method="post">
-                  <div class="col-lg-12">
-                  <div class="form-group">
-                     
-                     <c:set var="pname" scope="session" value="${row.Brand} ${row.Productname}"></c:set>
-                     <c:set var="name" scope="session" value="${u.username}"> </c:set>
-                     <c:set var="phone" scope="session" value="${u.phone}"> </c:set>
-                     <c:set var="email" scope="session" value="${u.email}"></c:set>
-                     <c:set var="price" scope="session" value="${row.Quantity*row.Price}"></c:set>
-                     <c:set var="qty" scope="session" value="${row.Quantity}"></c:set>
+					<div class="cart-table table-responsive mb-40">
+						<table class="table">
+							<thead>
+								<tr>
+									<th class="pro-thumbnail">Image</th>
+									<th class="pro-title">Product</th>
+									<th class="pro-price">Price</th>
+									<th class="pro-quantity">Quantity</th>
+									<th class="pro-subtotal">Total</th>
+									<th class="pro-remove">Remove</th>
+								</tr>
+							</thead>
+							<tbody>
+							<c:forEach items="${rs.rows}" var="rs1">
+								<c:if test="${rs1 == null}">
+								<tr>
+									<td colspan="6">No Product added ->
+										<button class="btn btn-success" style="">
+											<a href="Products.jsp">Continue Shopping</a>
+										</button>
+									</td>
+									
+								</tr>
+								</c:if>
+								</c:forEach>
+								<c:forEach items="${rs.rows}" var="row">
+								<tr>
+									<td class="pro-thumbnail"><a href="#"><img src="ImageServlet?id=${row.Id}"
+											class="img-fluid" alt="Product"></a></td>
+									<td class="pro-title"><a href="#"></a>${row.Productname}</td>
+									<td class="pro-price"><span>&#x20B9; ${row.Price}</span></td>
+									<td class="pro-quantity">${row.Quantity}</td>
+									<td class="pro-subtotal"><span> &#x20B9; ${row.Quantity * row.Price}</span></td>
+									<td class="pro-remove"><span style="cursor: pointer;"
+										id="delete_cart_p" ct_id=""><i class="fa fa-trash-o"></i></span></td>
+								</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
 
-                     <button type="submit" class="btn btn-round btn-block" style="background:#a4c639;color: #fff;
-                      font-size: 13px;
-                      text-transform: uppercase;
-                      font-weight: 700;
-                      padding: 12px 30px;
-                      border-radius: 30px;
-                      display: inline-block;
-                      transition: all 0.3s;">
-                      Buy Now</button>
-                </div></div>
-        </form>
-        </c:forEach>
-        <c:forEach items="${rs.rows}" var="row1"> 
-        <form action="RemoveFromCart" method="POST">
-                  <div class="col-lg-12">
-                  <div class="form-group">
-                    <input type="text" name="Id" value="${row1.Id}" hidden>
-                     <button type="submit" class="btn btn-round btn-block" style="background:#a4c639;color: #fff;
-                      font-size: 13px;
-                      text-transform: uppercase;
-                      font-weight: 700;
-                      padding: 12px 30px;
-                      border-radius: 30px;
-                      display: inline-block;
-                      transition: all 0.3s;" align="center">
-                      Remove</button>
-                </div></div>
-        </form> 
-        </c:forEach>  
-</td>
-</tr>
-</c:forEach>
-</tbody>
-</table>
+					<div class="row">
 
-<table border="1" class="tbl-cart" cellpadding="30" cellspacing="10">
-<center>
-	<tr>
-		<th>Total</th>
-		<th>SGST :  </th>
-		<th>CGST :  </th>
-		<th>Sub Total</th>
-	</tr>
-	<tr>
-		<td></td>
-		<td>6%</td>
-		<td>6%</td>
-	</tr>
-</center>
-</table>
-</div>
-</body>
-</html>
+						<div class="col-lg-6 col-12">
+							<div class="discount-coupon d-none">
+								<h4>Discount Coupon Code</h4>
+								<form action="#">
+									<div class="row">
+										<div class="col-md-6 col-12 mb-25">
+											<input type="text" placeholder="Coupon Code">
+										</div>
+										<div class="col-md-6 col-12 mb-25">
+											<input type="submit" value="Apply Code">
+										</div>
+									</div>
+								</form>
+							</div>
+
+							<!--=======  End of Discount Coupon  =======-->
+
+						</div>
+
+
+						<div class="col-lg-6 col-12 d-flex">
+							<!--=======  Cart summery  =======-->
+							<sql:query var="rs2" dataSource="${con}">
+							Select SUM(Price) as Price from cartitems where Username = ?
+							<sql:param>${u.username}</sql:param>
+							</sql:query>
+						<c:forEach items="${rs2.rows}" var="row">
+							<div class="cart-summary">
+								<div class="cart-summary-wrap">
+									<h4>Cart Summary</h4>
+									<p>
+										Sub Total <span> &#x20B9; ${row.Price}
+										</span>
+									</p>
+									<h2>
+										Grand Total <span> &#x20B9; ${row.Price}
+										</span>
+									</h2>
+								</div>
+								<div class="cart-summary-button">
+									<a href="checkout.php"><button class="checkout-btn">Checkout</button></a>
+									<!-- <button class="update-btn">Update Cart</button> -->
+								</div>
+							</div>
+							</c:forEach>
+
+
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>

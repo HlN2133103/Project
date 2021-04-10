@@ -26,7 +26,6 @@
 </style>
 </head>
 <body>
-<jsp:include page="Header.jsp"></jsp:include>
 <br><br><br><br><br><br><br>
 			<div class="container" style="width: 50%; height : 100%;">
 				  <h1>ADD Products</h1>

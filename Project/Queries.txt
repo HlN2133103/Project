@@ -3,6 +3,7 @@ create database project;
 use project; 
 
 create table User(
+	Name varchar(40),
     Username varchar(30),
     Password varchar(20),
     Phone_no varchar(10),
@@ -11,10 +12,12 @@ create table User(
     L_image longBlob,
     L_type varchar(10),
     Address varchar(150),
-    Shop_image longBlob);
+    Shop_image longBlob,
+    Status varchar(20),
+    CurrentStatus varchar(20));
 
 
-select Username, Password,Phone_no, Email,Company_name, L_type, Address from User;
+select Name, Username, Password, Phone_no, Email, Company_name, L_type, Address, Status, CurrentStatus from User;
 
 create table Products(Id int Primary key auto_increment,
 		  Productname varchar(100),
@@ -39,8 +42,8 @@ select Productname,Brand,MRP_Price,C_Price,S_Price,Quantity,Weight,Status,Margin
 
 create table Ordertable(
 		Id int Primary Key auto_increment,
-		Orderdate Date,
-		Ordertime 
+		Orderdate varchar(10),
+		Ordertime varchar(10),
 		User varchar(30), 
 		ProductId int,
 		Productname varchar(40),
@@ -54,8 +57,8 @@ create table Ordertable(
 		Paymentmethod varchar(30),
 		SoldBy varchar(30),
 		ShippingAddress varchar(100),
-		Placeofdelivery(30),
+		Placeofdelivery varchar(30)
 );
 
-
+update user set Status = 'Admin', CurrentStatus = 'Activated' where Username = 'HP0711'
 

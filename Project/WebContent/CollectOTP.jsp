@@ -1,48 +1,61 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<body class="account-page">
+	<jsp:include page="inc/head.jsp"></jsp:include>
+	<div class="page-content mb-50">
+		<div class="container text-center">
+			<div class=" row">
+				<div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb-30 mx-auto login-form">
 
-<script>
-	$(document).ready(function(){
-		$("#OTP").modal('show');
-	});
-</script>
-<style>
-  			label
-  			{
-  				font-size:20px;
-  			}
-  </style>
-</head>
-<body>
-<div class="modal fade" id="OTP" role="dialog">
-         <div class="modal-dialog">  
-            <div class="modal-content">
-               <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">×</button>
-                  <h4 class="modal-title">Verify OTP</h4>
-               </div>
-               <div class="modal-body">
-                  <form action="CheckOTP" method="post">
-                     <div class="form-group">
-                        <label >Email address</label>
-                        <input type="text" name="otp" class="form-control input-lg" id="email" placeholder="Enter OTP">                        
-                     </div>
-                     <div class="modal-footer">
-                     <button type="submit" class="btn btn-primary" > Check OTP </button>
-                     </div>
-                  </form>
-               </div>
-            </div>
-         </div>
-      </div>
+					<div class="container">
 
-</body>
-</html>
+						<!-- Account Logo -->
+						<div class="account-logo">
+							<a href="index.jsp">One Stop Supply</a>
+						</div>
+						<!-- /Account Logo -->
+
+						<div class="account-box">
+							<div class="account-wrapper">
+								<h3 class="account-title">Verify OTP</h3>
+
+								<p class="account-subtitle">Enter OTP to reset password</p>
+								
+								<!-- Account Form -->
+								<form method="post" action="CheckOTP" name="reset">
+
+									<div class="form-group">
+										<label>Enter OTP</label>
+										<input class="form-control" type="text" name="otp" placeholder="Enter OTP" required>
+									</div>
+									<div class="form-group text-center">
+										<input class="btn btn-primary account-btn" type="submit" value="Verify OTP"/>
+										<!-- <button  type="submit">Reset Password</button> -->
+									</div>
+									<div class="account-footer">
+										<div class="text-muted">
+
+											<p>All rights reserved. &copy; 
+											<h6 class="text-muted" style="font-size: 12px;">Version : 1.1</h6>
+
+
+											<div class="text-danger" style="font-size:.9375rem;">Incase mail not recieved <a href="mailto:support@jkithub.in">Contact Us</a></div>
+										</div>
+									</div>
+								</form>
+								<!-- /Account Form -->
+							</div>
+						</div>
+					</div>
+					<!-- /Main Wrapper -->
+				</div>
+			</div>
+		</div>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+
+
+	<br /><br />
+
+
+	<?php include('inc/footer.php'); ?>

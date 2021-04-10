@@ -1,46 +1,65 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<body class="account-page">
+	<jsp:include page="inc/head.jsp"></jsp:include>
+	<div class="page-content mb-50">
+		<div class="container text-center">
+			<div class=" row">
+				<div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb-30 mx-auto login-form">
 
-<script>
-	$(document).ready(function(){
-		$("#ChangePassword").modal('show');
-	});
-</script>
-</head>
-<body>
-<div class="modal fade" id="ChangePassword" role="dialog">
-         <div class="modal-dialog">  
-            <div class="modal-content">
-               <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">×</button>
-                  <h4 class="modal-title">Change Password</h4>
-               </div>
-               <div class="modal-body">
-                  <form action="ChangePassword" method="post">
-        					           <div class="form-group">
+					<div class="container">
+
+						<!-- Account Logo -->
+						<div class="account-logo">
+							<a href="index.jsp">One Stop Supply</a>
+						</div>
+						<!-- /Account Logo -->
+
+						<div class="account-box">
+							<div class="account-wrapper">
+								<h3 class="account-title">Verify OTP</h3>
+
+								<p class="account-subtitle">Enter OTP to reset password</p>
+								
+								<!-- Account Form -->
+								<form method="post" action="ChangePassword" name="reset">
+
+									<div class="form-group">
 										<label>Enter Password</label>
-										<input type="text" name="password" placeholder="Enter Password" class="form-control input-lg"/>
-										</div>
-										<div class="form-group">
-										<label>Enter ConfirmPassword</label>
-										<input type="text" name="confirmpassword" placeholder="Enter ConfirmPassword" class="form-control input-lg"/>
+										<input class="form-control" type="password" name="password" placeholder="Enter password" required>
 									</div>
-                     <div class="modal-footer">
-                     <input type="submit" value="ChangePassword" class="btn btn-warning"/>
-					  <input type="reset" value="Reset" class="btn btn-danger"/>
-                     </div>
-                  </form>
-               </div>
-            </div>
-         </div>
-         </div>
-</body>
-</html>
+									<div class="form-group">
+										<label>Enter Confirm Password</label>
+										<input class="form-control" type="password" name="cpassword" placeholder="Enter password" required>
+									</div>
+									<div class="form-group text-center">
+										<input class="btn btn-primary account-btn" type="submit" value="Reset Password"/>
+										<!-- <button  type="submit">Reset Password</button> -->
+									</div>
+									<div class="account-footer">
+										<div class="text-muted">
+
+											<p>All rights reserved. &copy; 
+											<h6 class="text-muted" style="font-size: 12px;">Version : 1.1</h6>
+
+
+											<div class="text-danger" style="font-size:.9375rem;">Incase mail not recieved <a href="mailto:support@jkithub.in">Contact Us</a></div>
+										</div>
+									</div>
+								</form>
+								<!-- /Account Form -->
+							</div>
+						</div>
+					</div>
+					<!-- /Main Wrapper -->
+				</div>
+			</div>
+		</div>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+
+
+	<br /><br />
+
+
+	<?php include('inc/footer.php'); ?>

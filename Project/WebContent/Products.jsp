@@ -16,8 +16,8 @@
   </head>
 
   <body>
-    <jsp:include page="Header.jsp"></jsp:include>
-        <br><br>
+<jsp:include page="inc/head.jsp"></jsp:include>
+<jsp:include page="inc/header.jsp"></jsp:include>
         <sql:setDataSource driver="com.mysql.jdbc.Driver"
 					   url="jdbc:mysql://localhost:3306/project"
 					   user="root"
@@ -27,14 +27,27 @@
 	<sql:query var="rs" dataSource="${con}">
 		select * from products where Status='Available';
 	 </sql:query>
-	 
+	 <div class="breadcrumb-area mb-50">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="breadcrumb-container">
+						<ul>
+							<li><a href="index.jsp"><i class="fa fa-home"></i> Home</a></li>
+							<li class="active">Products</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
         <div class="services">
         <div class="container">
         <div class="row">
      <c:forEach items="${rs.rows}" var="row">
         <div class="col-md-4">
             <div class="service-item">
-             <a href="product-details.jsp?Id=${row.Id}"> <img src="ImageServlet?id=${row.Id}" style="height:230px; width:360px;" class="img-responsive"/></a>
+             <a href="product-details.jsp?Id=${row.Id}"> <img src="ImageServlet?id=${row.Id}" style="height:250px; width:300px;" class="img-responsive"/></a>
               <div class="down-content">
                 <h4> ${row.Brand} ${row.Productname}</h4>
                 <div style="margin-bottom:10px;">
@@ -58,25 +71,7 @@
         </c:forEach>
       </div>
           
-          <nav>
-          <ul class="pagination pagination-lg justify-content-center">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">«</span>
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">»</span>
-                <span class="sr-only">Next</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
+         
 
         <br>
         <br>
@@ -86,29 +81,7 @@
 </div>
 
    
-   <!--#include file="Footer.asp"-->
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="assets/jquery/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Additional Scripts -->
-    <script src="assets/js/custom.js"></script>
-    <script src="assets/js/owl.js"></script>
-    <script src="assets/js/slick.js"></script>
-    <script src="assets/js/accordions.js"></script>
-
-    <script language = "text/Javascript"> 
-      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
-      function clearField(t){                   //declaring the array outside of the
-      if(! cleared[t.id]){                      // function makes it static and global
-          cleared[t.id] = 1;  // you could use true and false, but that's more typing
-          t.value='';         // with more chance of typos
-          t.style.color='#fff';
-          }
-      }
-    </script>
-
+<jsp:include page="inc/footer.jsp"></jsp:include>
   </body>
 </html>
 

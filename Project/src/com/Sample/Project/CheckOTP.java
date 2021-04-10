@@ -15,10 +15,10 @@ public class CheckOTP extends HttpServlet
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
-		int userotp=Integer.parseInt(req.getParameter("otp"));//entered by user
+		int userotp=Integer.parseInt(req.getParameter("otp"));
 		
 		HttpSession hs=req.getSession();
-		int yourotp=(Integer)hs.getAttribute("randomnumber");//your otp saved in session
+		int yourotp=(Integer)hs.getAttribute("randomnumber");
 		
 		PrintWriter out=resp.getWriter();
 		if(userotp==yourotp)

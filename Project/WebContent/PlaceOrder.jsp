@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,13 +31,13 @@
         
         <div class="modal-footer">
         <form action="PlaceOrder" method="post">
-        <input type="text" value="<%=session.getAttribute("pname")%>" hidden name="pname">
-        <input type="text" value="<%=session.getAttribute("price")%>" hidden name="Price">
-        <input type="text" value="<%=session.getAttribute("name")%>" hidden name="name">
-        <input type="text" value="<%=session.getAttribute("phone")%>" hidden name="phone">
-        <input type="text" value="<%=session.getAttribute("email")%>" hidden name="email">
-        <input text="text" value="<%=session.getAttribute("qty")%>" hidden name="qty">
-        <input type="submit" class="btn btn-primary" value="Place Order">
+         <c:set var="pname" scope="session" value="session.getAttribute('pname')"></c:set>
+         <c:set var="Price" scope="session" value="session.getAttribute('price')"></c:set>
+         <c:set var="name" scope="session" value="session.getAttribute('name')"></c:set>
+         <c:set var="phone" scope="session" value="session.getAttribute('phone')"></c:set>
+         <c:set var="email" scope="session" value="session.getAttribute('email')"></c:set>
+         <c:set var="qty" scope="session" value="session.getAttribute('qty')"></c:set>
+         <input type="submit" class="btn btn-primary" value="Place Order">
           </form>
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         </div>

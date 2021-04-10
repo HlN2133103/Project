@@ -3,19 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	    
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="assets/css/fontawesome.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/owl.css">
-</head>
 <body>
-
+<jsp:include page="inc/head.jsp"></jsp:include>
+<jsp:include page="inc/header.jsp"></jsp:include>
 <sql:setDataSource driver="com.mysql.jdbc.Driver"
 					   url="jdbc:mysql://localhost:3306/project"
 					   user="root"
@@ -26,7 +16,20 @@
 		select * from products where Id=?
 		<sql:param>${param.Id}</sql:param>
 	</sql:query>
-	
+	<div class="breadcrumb-area mb-50">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="breadcrumb-container">
+						<ul>
+							<li><a href="index.jsp"><i class="fa fa-home"></i> Home</a></li>
+							<li class="active">Products-Detail</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	 <c:forEach items="${rs.rows}" var="row">
     <div class="services">
       <div class="container">
@@ -42,12 +45,11 @@
             <div class="sidebar-item recent-posts">
               <div class="sidebar-heading">
                 <h4><c:out value="${row.Brand} ${row.Productname}"></c:out>
-                
+                </h4>
               </div>
 
               <div class="content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed velit eveniet quibusdam animi eos, cum! Alias, dicta. Minima repudiandae sequi iste, nostrum!</p>
-              </div>
+                <p><c:out value="${row.description}"></c:out></p></div>
             </div>
 
             <br>
@@ -135,9 +137,6 @@
         
 
         <br>
-        <h4>Description</h4>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea illum necessitatibus adipisci cum dolor quam magnam similique quasi iure blanditiis?</p>
         <br>
         <br>
         <br>
@@ -145,16 +144,6 @@
       </div>
     </div>
     </c:forEach>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Additional Scripts -->
-    <script src="assets/js/custom.js"></script>
-    <script src="assets/js/owl.js"></script>
-    <script src="assets/js/slick.js"></script>
-    <script src="assets/js/accordions.js"></script>
 
     <script language = "text/Javascript"> 
       cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
@@ -166,6 +155,6 @@
           }
       }
     </script>
-
+<jsp:include page="inc/footer.jsp"></jsp:include>
   </body>
 </html>

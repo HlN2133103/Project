@@ -18,7 +18,7 @@ public class ChangePassword extends HttpServlet
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
 		String pass=req.getParameter("password");
-		String cpass=req.getParameter("confirmpassword");
+		String cpass=req.getParameter("cpassword");
 		
 		PrintWriter out=resp.getWriter();
 		if(pass.equals(cpass))

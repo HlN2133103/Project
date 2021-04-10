@@ -1,53 +1,69 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+	pageEncoding="ISO-8859-1"%>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<script>
-	$(document).ready(function(){
-		$("#loginmodal").modal('show');
-	});
-</script>
-<style>
-  			label
-  			{
-  				font-size:20px;
-  			}
-  </style>
-</head>
 <body>
-<!-- Login Modal-->
- <div class="container">
-	<div class="modal fade" id="loginmodal" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h3 class="modal-title">Login</h3>
+	<jsp:include page="inc/head.jsp"></jsp:include>
+	<jsp:include page="inc/header.jsp"></jsp:include>
+
+	<div class="breadcrumb-area mb-50">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="breadcrumb-container">
+						<ul>
+							<li><a href="index.php"><i class="fa fa-home"></i> Home</a></li>
+							<li class="active">Login</li>
+						</ul>
+					</div>
 				</div>
-				<div class="modal-body" id="1">
-					<form action="DatabaseLogin" method="post">
-						<div class="form-group" style="width:100%;">
-							<div class="container-fluid">
-								<label>Username:</label>
-								<input type="text" name="user" class="form-control input-lg" placeholder="Username">
-							</div>
-							<div class="container-fluid">
-								<label>Password:</label>
-								<input type="password" name="pass" class="form-control input-lg" placeholder="Enter Password">
-							</div>
-							<div class="text-right" style="font-size:30px;">
-								<a href="CollectEmail.jsp"><h4>Forgot Password</h4></a>
-                            </div>
-								<br>
-							<div class="modal-footer">
-								<input type="submit" class="btn btn-primary" data-toggle="modal" data-target="#loginmodal" value="Login" />
-								<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+	<div class="page-content mb-50">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-md-12 col-xs-12 col-lg-10 mb-30">
+					<!-- Login Form s-->
+
+					<form action="DatabaseLogin" method="POST">
+
+
+						<div class="login-form">
+							<h4 class="login-title">Login</h4>
+
+							<div class="row">
+
+								<div class="col-md-12 col-12 mb-20">
+									<label>Email/Username*</label> <input name="user"
+										class="mb-0" placeholder="Username/Email" type="text">
+								</div>
+
+								<div class="col-12 mb-20">
+									<label>Password</label> <input name="pass" class="mb-0"
+										placeholder="Password" type="password">
+								</div>
+
+								<div class="col-md-8 d-none">
+
+									<div class="check-box d-inline-block ml-0 ml-md-2 mt-10">
+										<input type="checkbox" id="remember_me"> <label
+											for="remember_me">Remember me</label>
+									</div>
+
+								</div>
+
+								<div class="col-md-12 mt-21 mb-20 text-left text-md-right">
+									<a href="forget_password.jsp"> Forgot password?</a>
+								</div>
+
+								<div class="col-md-7 col-20 mb-20">
+									<button class="register-button mt-30 float-right" name="signin"
+										type="submit">Login</button>
+								</div>
+								
+								<div class="col-md-7 col-20 text-right">
+									<a href="Register.jsp" >Don't have Account? Create One</a>
+								</div>
 							</div>
 						</div>
 					</form>
@@ -55,6 +71,6 @@
 			</div>
 		</div>
 	</div>
-</div>
+	<jsp:include page="inc/footer.jsp"></jsp:include>
 </body>
 </html>

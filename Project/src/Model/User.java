@@ -2,12 +2,23 @@ package Model;
 
 public class User 
 {
+	private String name;
 	private String username;
 	private String email;
 	private String password;
 	private String status;
+	private String Currentstatus;
 	private String phone;
 	private String company_name;
+	
+	public String getName() 
+	{
+		return name;
+	}
+	public void setName(String name) 
+	{
+		this.name = name;
+	}
 	
 	public String getCompany() 
 	{
@@ -53,6 +64,15 @@ public class User
 	public void setStatus(String status)
 	{
 		this.status = status;
+	}
+	
+	public String getCurrentStatus() 
+	{
+		return Currentstatus;
+	}
+	public void setCurrentStatus(String Currentstatus)
+	{
+		this.Currentstatus = Currentstatus;
 	}
 	
 	public String getPhone() 
