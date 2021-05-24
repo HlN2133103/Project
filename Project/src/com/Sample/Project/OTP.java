@@ -26,8 +26,8 @@ public class OTP extends HttpServlet
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/Project","root","root");
-			PreparedStatement ps=con.prepareStatement("select * from User where Email=?");
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/Project","root","pass@123");
+			PreparedStatement ps=con.prepareStatement("select * from user where Email=?");
 			ps.setString(1, email);
 			ResultSet result=ps.executeQuery();
 			
@@ -44,7 +44,7 @@ public class OTP extends HttpServlet
 				Email em=new Email(email,"Password Recovery - One Stop Supply",
 						 "Dear user,\n"
 						+"Here is your One Time Password(OTP) to reset your password.\n\n"
-						+"Otp is: "+randomnumber
+						+"OTP is: "+randomnumber
 						+"\n\nDo not share your OTP with anyone.\n"
 						+"\nThis is an auto-generated email.  Do not reply to this email."
 						);

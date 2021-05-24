@@ -1,12 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+ <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>Dashboard</title>
 </head>
 <body>
-
+<sql:setDataSource driver="com.mysql.jdbc.Driver"
+					   url="jdbc:mysql://localhost:3306/project"
+					   user="root"
+					   password="pass@123"
+					   var="con"/>
+					 
+	<sql:query var="rs" dataSource="${con}">
+		SELECT COUNT(OrderId) as Orders from ordertable where Status = 'Accepted'
+		</sql:query>
+		
+		<sql:query var="rs1" dataSource="${con}">
+		SELECT COUNT(OrderId) as Orders from ordertable where Status = 'Pending'
+		</sql:query>
+		
+		<sql:query var="rs2" dataSource="${con}">
+		SELECT COUNT(OrderId) as Orders from ordertable where Status = 'Cancelled'
+		</sql:query>
+		
+		<sql:query var="rs3" dataSource="${con}">
+		SELECT COUNT(OrderId) as Orders from ordertable where Status = 'Delivered'
+		</sql:query>
+		
+		<sql:query var="rs4" dataSource="${con}">
+		SELECT SUM(TotalAmount) as Price from ordertable where Status = 'Delivered'
+		</sql:query>
+		
+		
         <div id="preloader">
             <div class="loader"></div>
         </div>
@@ -18,34 +46,9 @@
             <div class="content-body">
 
                 <div class="container-fluid">
-                    <div class="row justify-content-between mb-4 align-items-center mt-3">
-                        <?php 
-
-
-
-                        if(isset($_SESSION['login_success'])):?>
-
-
-
-                            <div class="alert alert-info alert-dismissible fade show" role="alert">
-
-                                <?php echo $_SESSION['login_success']; ?>
-
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-
-                                    <span aria-hidden="true">&times;</span>
-
-                                </button>
-
-                            </div>
-
-                        <?php endif; ?>
-
-                        <?php unset($_SESSION['login_success']); ?>
-
 
                         <div class="col-xl-3 text-left">
-                           <h3 class="page-heading">Welcome <?php  if(!empty($_SESSION['head_name'])){ echo $_SESSION['head_name']; }else{ echo "Null";}?>!</h3>
+                           <h3 class="page-heading">Welcome</h3>
                            <!-- <h2 class="page-heading">Hi,Welcome Back!</h2> -->
                            <p class="mb-0">Admin</p>
                        </div>
@@ -79,27 +82,32 @@
                         </div>
                     </div>    
                 </div>
+              
                 <div class="row">
                     <div class="col-xl-6 col-xxl-12">
                         <div class="row">
+                        <c:forEach items="${rs.rows}" var="row">
                             <div class="col-sm-6 col-xxl-6 col-xl-6">
                                 <div class="card">
+                                  
                                     <div class="card-body pb-0">
                                         <div class="row justify-content-between">
                                             <div class="col-auto">
                                                 <h4 class="text-muted mb-3">Accepted</h4>
-                                            </div>
-                                            <div class="col-auto">
-                                                <h2><?php echo $data[count_o_a] ?></h2>
-                                            </div>
+                                            </div>      
                                         </div>
-                                        
                                     </div>
+                                    
                                     <div class="chart-wrapper">
-                                        <div id="" class="home_chart_widget chart-one"></div>
+                                        <div id="" class="home_chart_widget chart-one">
+                                        <h3 align="center">
+                                                ${row.Orders}
+                                        </h3></div>
                                     </div>
                                 </div>
                             </div>
+                            </c:forEach>
+                            <c:forEach items="${rs1.rows}" var="row">
                             <div class="col-sm-6 col-xxl-6 col-xl-6">
                                 <div class="card">
                                     <div class="card-body pb-0">
@@ -107,17 +115,23 @@
                                             <div class="col-auto">
                                                 <h4 class="text-muted mb-3">Pending</h4>
                                             </div>
-                                            <div class="col-auto">
-                                                <h2><?php echo $data_p[count_o_p] ?></h2>
-                                            </div>
+                                        
                                         </div>
                                         
                                     </div>
                                     <div class="chart-wrapper">
-                                        <div id="" class="home_chart_widget chart-two"></div>
+                                        <div id="" class="home_chart_widget chart-two">
+                                        <h3 align="center">
+                                                ${row.Orders}
+                                        </h3>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>  <div class="col-sm-6 col-xxl-6 col-xl-6">
+                            </div>  
+                            </c:forEach>
+                            
+                              <c:forEach items="${rs2.rows}" var="row">
+                            <div class="col-sm-6 col-xxl-6 col-xl-6">
                                 <div class="card">
                                     <div class="card-body pb-0">
                                         <div class="row justify-content-between">
@@ -125,16 +139,21 @@
                                                 <h4 class="text-muted mb-3">Cancel</h4>
                                             </div>
                                             <div class="col-auto">
-                                                <h2><?php echo $data_c[count_o_c] ?></h2>
+                                                <h2></h2>
                                             </div>
                                         </div>
                                         
                                     </div>
                                     <div class="chart-wrapper">
-                                        <div id="" class="home_chart_widget chart-two"></div>
+                                        <div id="" class="home_chart_widget chart-two">
+                                         <h3 align="center">
+                                                ${row.Orders}
+                                        </h3></div>
                                     </div>
                                 </div>
                             </div>
+                            </c:forEach>
+                              <c:forEach items="${rs3.rows}" var="row">
                             <div class="col-sm-6 col-xxl-6 col-xl-6">
                                 <div class="card">
                                     <div class="card-body pb-0">
@@ -143,17 +162,21 @@
                                                 <h4 class="text-muted mb-3">Delivered</h4>
                                             </div>
                                             <div class="col-auto">
-                                                <h2><?php echo $data_d[count_o_d] ?></h2>
+                                                <h2></h2>
                                             </div>
                                         </div>
                                         
                                     </div>
                                     <div class="chart-wrapper">
-                                        <div id="" class="home_chart_widget chart-two"></div>
+                                        <div id="" class="home_chart_widget chart-two">
+                                         <h3 align="center">
+                                                ${row.Orders}
+                                        </h3></div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-xxl-6 col-xl-6">
+                            </c:forEach>
+                         <!-- <div class="col-sm-6 col-xxl-6 col-xl-6">
                                 <div class="card">
                                     <div class="card-body pb-0">
                                         <div class="row justify-content-between">
@@ -188,18 +211,19 @@
                                         <div id="" class="home_chart_widget chart-three"></div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                             
                         </div>
                         
                     </div>
                 </div>
+                
  </div>
  </div>
- </div>
+
             <div class="footer">
                 <div class="copyright">
-                    <p>All rights reserved. &copy; 2020 <a target="_blank" href="http://jkitsolution.co.in/">jkitsolution.co.in</a></p>
+                    <p>All rights reserved. &copy; 2020 <a target="_blank" href=""></a></p>
                 </div>
             </div>
    <jsp:include page="inc/footer.jsp"></jsp:include>

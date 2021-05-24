@@ -21,11 +21,11 @@ public class ImageServlet extends HttpServlet
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
 		
-		int id=Integer.parseInt(req.getParameter("id"));//1
+		int id=Integer.parseInt(req.getParameter("id"));
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","root");
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","pass@123");
 			PreparedStatement ps=con.prepareStatement("select F_Image from products where Id=?");
 			ps.setInt(1, id);
 			ResultSet rs=ps.executeQuery();

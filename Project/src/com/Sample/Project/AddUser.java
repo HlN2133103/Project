@@ -40,16 +40,21 @@ public class AddUser extends HttpServlet {
 		
 		InputStream is1 = part1.getInputStream();
 		
+		Password p = new Password();
+		
+		String hashpassword = p.hashPassword(cpassword);
+		System.out.println(hashpassword);
+		
 		try
 		{
 			if(cpassword.equals(password))
 			{
 				Class.forName("com.mysql.jdbc.Driver");
-				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","root");
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","pass@123");
 				PreparedStatement statement=con.prepareStatement(query);
 				statement.setString(1, name);
 				statement.setString(2, username);
-				statement.setString(3, password);
+				statement.setString(3, hashpassword);
 				statement.setString(4, Phone);
 				statement.setString(5, Email);
 				statement.setString(6, C_name);

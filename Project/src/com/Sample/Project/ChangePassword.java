@@ -26,8 +26,8 @@ public class ChangePassword extends HttpServlet
 			try
 			{
 				Class.forName("com.mysql.jdbc.Driver");
-				Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/Project","root","root");
-				PreparedStatement ps=con.prepareStatement("update User set Password=? where Email=?");
+				Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/Project","root","pass@123");
+				PreparedStatement ps=con.prepareStatement("update user set Password=? where Email=?");
 				ps.setString(1, pass);
 				ps.setString(2, (String)req.getSession().getAttribute("email"));
 				ps.executeUpdate();

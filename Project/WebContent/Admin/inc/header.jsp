@@ -1,11 +1,8 @@
-  
- <!--**********************************
-            Nav header start
-            ***********************************-->
+
             <div class="nav-header">
                 <div class="brand-logo">
-                    <a href="index.html">
-                        <b class="logo-abbr">D</b>
+                    <a href="Adminindex.jsp">
+                        <b class="logo-abbr">O</b>
                         <span class="brand-title"><b>One Stop Supply</b></span>
                     </a>
                 </div>
@@ -15,10 +12,6 @@
                     </div>
                 </div>
             </div>
-        <!--**********************************
-            Nav header end
-            ***********************************-->
-
             <div class="header">    
                 <div class="header-content clearfix">
      
@@ -91,7 +84,7 @@
                                 <div class="drop-down dropdown-profile animated flipInX">
                                     <div class="dropdown-content-body">
                                         <ul>
-                                            <li class="d-none"><a href="profile.php"><i class="icon-user"></i>  <span>My Profile</span></a>
+                                            <li class="d-none"><a href="profile.jsp"><i class="icon-user"></i>  <span>My Profile</span></a>
                                             <li><a href="../Logout.jsp"><i class="icon-key"></i> <span>Logout</span></a>
                                             </li>
                                         </ul>

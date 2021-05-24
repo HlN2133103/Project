@@ -11,7 +11,6 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Model.User;
 
 @WebFilter(urlPatterns = {"/AddProducts.jsp"})
 public class LoginFilter implements Filter
@@ -26,14 +25,14 @@ public class LoginFilter implements Filter
 			resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
 			resp.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 			
-			if(req.getSession().getAttribute("u")==null)
+			if(req.getSession().getAttribute("Username")==null)
 			{
 				resp.sendRedirect("Login.jsp");
 			}
 			else 
 			{
-				User u=(User)req.getSession().getAttribute("u");
-				if(!u.getStatus().equals("Admin"))
+				String status = req.getSession().getAttribute("Status").toString();
+				if(!status.equals("Admin"))
 					resp.sendRedirect("Login.jsp");
 			}
 			

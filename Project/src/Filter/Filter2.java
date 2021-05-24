@@ -26,7 +26,7 @@ public class Filter2 implements Filter
 		resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
 		resp.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 		
-		if(req.getSession().getAttribute("u")==null)
+		if(req.getSession().getAttribute("Username")==null)
 		{
 			resp.sendRedirect("Login.jsp");
 		}

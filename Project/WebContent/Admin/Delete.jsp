@@ -14,9 +14,9 @@ try
 {
 	
 	Class.forName("com.mysql.jdbc.Driver");
-	Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","root");
+	Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","pass@123");
 	String username = request.getParameter("Username");
-	String query = "update User set CurrentStatus = 'Not-Activated' where Username = ?";
+	String query = "update user set CurrentStatus = 'Not-Activated' where Username = ?";
 	PreparedStatement statement=con.prepareStatement(query);
 	
 	statement.setString(1, username);

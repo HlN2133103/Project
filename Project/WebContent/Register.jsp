@@ -57,13 +57,12 @@
 								</div>
 
 								<div class="col-md-6 col-12 mb-20">
-									<label>Select License Type</label> <select name="l-type"
-										class="mb-02">
+									<label>Select License Type</label> 
+									<select name="l_type" class="mb-02">
 										<option selected>Open this select menu</option>
 										<option value="GST">GST</option>
 										<option value="FSSAI">FSSAI</option>
-										<option value="SHOP AND ESTABLISHMENT">SHOP AND
-											ESTABLISHMENT</option>
+										<option value="SHOP AND ESTABLISHMENT">SHOP AND ESTABLISHMENT</option>
 										<option value="PAN CARD">PAN CARD</option>
 									</select>
 								</div>

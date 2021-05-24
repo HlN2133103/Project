@@ -12,7 +12,7 @@
   <sql:setDataSource driver="com.mysql.jdbc.Driver"
 					   url="jdbc:mysql://localhost:3306/project"
 					   user="root"
-					   password="root"
+					   password="pass@123"
 					   var="con"/>
 	<sql:query var="rs" dataSource="${con}">
 		select * from user where CurrentStatus = 'Not-Activated'

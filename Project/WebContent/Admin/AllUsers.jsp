@@ -12,7 +12,7 @@
   <sql:setDataSource driver="com.mysql.jdbc.Driver"
 					   url="jdbc:mysql://localhost:3306/project"
 					   user="root"
-					   password="root"
+					   password="pass@123"
 					   var="con"/>
 					   
   <sql:query var="rs" dataSource="${con}">
@@ -59,7 +59,7 @@
                                                         <td>${row.Phone_no}</td>
                                                         <td>${row.Email}</td>
                                                   		<td>${row.Company_name}</td>
-                                                    <td><span><a href="add_category.php?id=<?php echo $categories_data[id] ?>" class="mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-pencil color-muted"></i> </a><i class="fa fa-close color-danger"></i></span>
+                                                    <td><span><a href="" class="mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-pencil color-muted"></i> </a><i class="fa fa-close color-danger"></i></span>
                                                     </td>
                                                 </tr>
                                                 </c:forEach>

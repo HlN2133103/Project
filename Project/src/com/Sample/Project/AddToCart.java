@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Model.User;
-
 @WebServlet(name="AddToCart",urlPatterns = "/AddToCart")
 public class AddToCart extends HttpServlet 
 {
@@ -23,10 +21,10 @@ public class AddToCart extends HttpServlet
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
-		HttpSession hs  = req.getSession();
+		HttpSession session  = req.getSession();
 		
 		int productid   = Integer.parseInt(req.getParameter("Id"));
-		String username = ((User)hs.getAttribute("u")).getUsername();
+		String username = session.getAttribute("Username").toString();
 		int quantity = Integer.parseInt(req.getParameter("quantity"));
 		String pname = req.getParameter("pname");
 		int Price = Integer.parseInt(req.getParameter("Price"));
@@ -34,7 +32,7 @@ public class AddToCart extends HttpServlet
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","root");
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","pass@123");
 			
 			PreparedStatement ps1 = con.prepareStatement("select * from cartitems where ProductId=? and Username=?");
 			ps1.setInt(1,productid);
@@ -67,7 +65,7 @@ public class AddToCart extends HttpServlet
 					+ "alert('cart item added successfully!!!');"
 					+ "window.location='Cart.jsp';"
 					+ "</script>");
-				resp.sendRedirect("Cart.jsp");
+				resp.sendRedirect("Products.jsp");
 			}
 		}
 		catch(Exception e)

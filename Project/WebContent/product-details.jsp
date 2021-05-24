@@ -9,7 +9,7 @@
 <sql:setDataSource driver="com.mysql.jdbc.Driver"
 					   url="jdbc:mysql://localhost:3306/project"
 					   user="root"
-					   password="root"
+					   password="pass@123"
 					   var="con"/>
 					   
 	<sql:query var="rs" dataSource="${con}">
@@ -71,7 +71,8 @@
                     <input type="number" value="1" name="quantity"  class="form-control">
                     <input type="text" value="${row.Id}" hidden name="Id">
                     <input type="text" value="${row.S_Price}" hidden name="Price">
-                    <input type="text" value ="${row.Brand} ${row.Productname}" hidden name="pname"></h4>
+                    <input type="text" value ="${row.Brand} ${row.Productname}" hidden name="pname">
+                     <input type="text" value ="${row.Weight}" hidden name="pweight"></h4>
                   </div>
                   <label for="">MRP Price</label>
                   <p style="font-size:20px;"> Rs. ${row.MRP_Price}</p><br>
@@ -116,18 +117,7 @@
                 </div></div>
         </form>
                     
-                      <div class="col-lg-12">
-                    <div class="form-group">
-                        <a href="Delete.php?Id=<?php echo $_GET['Id']; ?>"class="btn btn-round btn-block" style="background:#a4c639;color: #fff;
-                      font-size: 13px;
-                      text-transform: uppercase;
-                      font-weight: 700;
-                      padding: 12px 30px;
-                      border-radius: 30px;
-                      display: inline-block;
-                      transition: all 0.3s;">Delete</a>
-
-                  </div>
+                                       </div>
                 </div>
               </div>
             </form>

@@ -2,10 +2,10 @@ create database project;
 
 use project; 
 
-create table User(
+create table user(
 	Name varchar(40),
     Username varchar(30),
-    Password varchar(20),
+    Password varchar(70),
     Phone_no varchar(10),
     Email varchar(30),
     Company_name varchar(30),
@@ -17,9 +17,38 @@ create table User(
     CurrentStatus varchar(20));
 
 
-select Name, Username, Password, Phone_no, Email, Company_name, L_type, Address, Status, CurrentStatus from User;
+select Name, Username, Password, Phone_no, Email, Company_name, L_type, Address, Status, CurrentStatus from user;
 
-create table Products(Id int Primary key auto_increment,
+create table cartitems(
+	Id int Primary key auto_increment,
+	ProductId int,
+	Productname varchar(40),
+	Quantity int,
+	Username varchar(20));
+  
+select Id,Productname,Brand,MRP_Price,C_Price,S_Price,Quantity,Weight,Status,Margin,description from products;
+
+create table ordertable(
+		OrderId varchar(20) Primary Key,
+		Orderdate varchar(10),
+		Ordertime varchar(10),
+		Username varchar(20),
+		Name varchar(30),
+		email varchar(40),
+		Phone  varchar(10),
+		Company varchar(20),
+		Totalamount varchar(10),
+		Paymentmethod varchar(30),
+		PaymentId varchar(50),
+		SoldBy varchar(30),
+		ShippingAddress varchar(400),
+		Placeofdelivery varchar(30),
+		instructions varchar(100),
+		Status varchar(20),
+		PaymentStatus varchar(20)
+);
+
+create table products(Id int Primary key auto_increment,
 		  Productname varchar(100),
 		  Brand varchar(30),
 		  MRP_Price varchar(5),
@@ -31,34 +60,34 @@ create table Products(Id int Primary key auto_increment,
 		  Weight varchar(6),
 		  Status varchar(20));
 
-create table cartitems(
-	Id int Primary key auto_increment,
+create table orders(
+	Id int(11) Primary Key auto_increment,
+	OrderId varchar(20),
 	ProductId int,
-	Productname varchar(40),
+	Productname varchar(100),
 	Quantity int,
-	Username varchar(20));
-  
-select Productname,Brand,MRP_Price,C_Price,S_Price,Quantity,Weight,Status,Margin from products;
-
-create table Ordertable(
-		Id int Primary Key auto_increment,
-		Orderdate varchar(10),
-		Ordertime varchar(10),
-		User varchar(30), 
-		ProductId int,
-		Productname varchar(40),
-		Description varchar(50),
-		Quantity int,
-		NetAmount varchar(10),
-		TaxRate varchar(5),
-		Taxtype varchar(10),
-		TaxAmount varchar(10),
-		Totalamount varchar(10),
-		Paymentmethod varchar(30),
-		SoldBy varchar(30),
-		ShippingAddress varchar(100),
-		Placeofdelivery varchar(30)
+	Username varchar(20)
 );
 
-update user set Status = 'Admin', CurrentStatus = 'Activated' where Username = 'HP0711'
+CREATE TABLE contacts (
+  id int(11) Primary key auto_increment,
+  name varchar(255) NOT NULL,
+  email varchar(255) NOT NULL,
+  subject text NOT NULL,
+  message longtext NOT NULL,
+  created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
 
+CREATE TABLE coupons (
+  id int(11) Primary key auto_increment,
+  name varchar(255) NOT NULL,
+  code varchar(255) NOT NULL,
+  amt varchar(255) NOT NULL,
+  status int(11) DEFAULT '0',
+  created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+select products.MRP_Price, products.C_Price, products.Margin, orders.Productname from products 
+FULL OUTER JOIN orders ON products.Id = orders.ProductId ORDER BY products.Id; 
+
+update user set Status = 'Admin', CurrentStatus = 'Activated' where Username = 'HP0711'

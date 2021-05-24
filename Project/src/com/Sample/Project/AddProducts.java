@@ -22,7 +22,7 @@ public class AddProducts extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		
-		String query = "insert into products(Productname,Brand,MRP_Price,C_Price,S_Price,F_Image,B_Image,Quantity,Weight,Status,Margin) values(?,?,?,?,?,?,?,?,?,?,?)";
+		String query = "insert into products(Productname,Brand,MRP_Price,C_Price,S_Price,F_Image,Quantity,Weight,Status,Margin,description) values(?,?,?,?,?,?,?,?,?,?,?)";
 		String pname = request.getParameter("pname");
 		String brand = request.getParameter("brand");
 		String mrp = request.getParameter("mrp_price");
@@ -30,23 +30,20 @@ public class AddProducts extends HttpServlet {
 		String sp = request.getParameter("s_price");
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
 		String weight = request.getParameter("weight");
+		String description = request.getParameter("description");
 	    int m1 = Integer.parseInt(mrp)-Integer.parseInt(sp);
 	    int m2 = m1*100;
 	    int margin = m2/Integer.parseInt(mrp);
-	    
-	    String particulars = "";
 		
 		
 		Part part=request.getPart("f_image");
-		Part part1=request.getPart("b_image");
 		
 		InputStream is = part.getInputStream();
-		InputStream is1 = part1.getInputStream();
 		try
 		{
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","root");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","pass@123");
 			PreparedStatement statement=con.prepareStatement(query);
 			
 			statement.setString(1, pname);
@@ -55,21 +52,21 @@ public class AddProducts extends HttpServlet {
 			statement.setString(4, cp);
 			statement.setString(5, sp);
 			statement.setBinaryStream(6, is);
-			statement.setBinaryStream(7, is1);
-			statement.setInt(8, quantity);
-			statement.setString(9, weight);
+			statement.setInt(7, quantity);
+			statement.setString(8, weight);
 			if(quantity > 0)
 			{
-			statement.setString(10,"Available");
+			statement.setString(9,"Available");
 			}
 			else
 			{
-				statement.setString(10,"Not Available");
+				statement.setString(9,"Not Available");
 			}
-			statement.setInt(11, margin);
+			statement.setInt(10, margin);
+			statement.setString(11, description);
 			statement.executeUpdate();
 			
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("Admin/product_page.jsp");
 		}
 		catch(Exception e)
 		{

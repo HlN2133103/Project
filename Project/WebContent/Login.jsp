@@ -11,7 +11,7 @@
 				<div class="col">
 					<div class="breadcrumb-container">
 						<ul>
-							<li><a href="index.php"><i class="fa fa-home"></i> Home</a></li>
+							<li><a href="index.jsp"><i class="fa fa-home"></i> Home</a></li>
 							<li class="active">Login</li>
 						</ul>
 					</div>
@@ -63,6 +63,9 @@
 								
 								<div class="col-md-7 col-20 text-right">
 									<a href="Register.jsp" >Don't have Account? Create One</a>
+								</div>
+								<div class="col-md-7 col-20 text-right">
+									<a href="/Admin/Login.jsp" >Admin Login</a>
 								</div>
 							</div>
 						</div>

@@ -18,9 +18,9 @@ public class MyOrders extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try
 		{
-			String query = "select * from Ordertable";
+			String query = "select * from ordertable";
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","root");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","pass@123");
 			PreparedStatement statement=con.prepareStatement(query);
 		}
 		catch(Exception e)

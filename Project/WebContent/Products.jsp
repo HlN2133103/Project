@@ -21,12 +21,21 @@
         <sql:setDataSource driver="com.mysql.jdbc.Driver"
 					   url="jdbc:mysql://localhost:3306/project"
 					   user="root"
-					   password="root"
+					   password="pass@123"
 					   var="con"/>
-					   
-	<sql:query var="rs" dataSource="${con}">
+				
+		<sql:query var="rs" dataSource="${con}">
 		select * from products where Status='Available';
 	 </sql:query>
+			
+		
+<c:if test="${param.p_name != null}">							 
+	<sql:query var="rs" dataSource="${con}">
+		select * from products where Productname LIKE ? OR Brand LIKE ?
+		<sql:param>${param.p_name}%</sql:param>
+		<sql:param>%${param.p_name}%</sql:param>
+	 </sql:query>	   
+	</c:if>
 	 <div class="breadcrumb-area mb-50">
 		<div class="container">
 			<div class="row">

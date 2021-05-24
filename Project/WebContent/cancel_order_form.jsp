@@ -31,20 +31,14 @@
           <h3 class="contact-page-title">Cancellation form</h3>
 
           <div class="contact-form">
-           <form  id="contact-form" action="cancel_order.php" method="POST">
+           <form  id="contact-form" action="Cancelorder.jsp" method="POST">
             <div class="form-group">
              <label>Order ID <span class="required">*</span></label>
-             <input type="text" value="<?php echo $OD_ID ?>" readonly>
-             <input type="Hidden" name="order_id_send" id="OD_ID" value="<?php echo $OD_ID ?>">
-           </div>
-           
-           
-           <div class="form-group">
-             <label>Reason</label>
-             <textarea name="reason" required></textarea>
+             <input type="text" value="<%=request.getParameter("Orderid")%>" readonly>
+             <input type="Hidden" name="Orderid" id="OD_ID" value="<%=request.getParameter("Orderid")%>">
            </div>
            <div class="form-group">
-             <button type="submit" value="submit" id="submit" class="contact-form-btn" name="submit">send</button>
+             <button type="submit" value="submit" id="submit" class="contact-form-btn" name="submit">Cancel Order</button>
            </div>
          </form>
        </div>

@@ -12,22 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Model.User;
-
-
 @WebServlet("/RemoveFromCart")
 public class RemoveFromCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
 		int Id  = Integer.parseInt(request.getParameter("Id"));
-		String username = ((User)session.getAttribute("u")).getUsername();
+		String username = session.getAttribute("Username").toString();
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","root");
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","pass@123");
 			
 			PreparedStatement statement = con.prepareStatement("DELETE FROM cartitems where Id = ? AND Username = ?");
 			statement.setInt(1, Id);
